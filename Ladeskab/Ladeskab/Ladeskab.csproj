@@ -45,7 +45,9 @@
   <ItemGroup>
     <Compile Include="Display.cs" />
     <Compile Include="IDisplay.cs" />
+    <Compile Include="ILogFile.cs" />
     <Compile Include="IUsbCharger.cs" />
+    <Compile Include="LogFile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StationControl.cs" />
