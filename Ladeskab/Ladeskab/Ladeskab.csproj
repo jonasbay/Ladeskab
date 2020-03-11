@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="DoorSimulator.cs" />
     <Compile Include="IDoor.cs" />
+    <Compile Include="Display.cs" />
+    <Compile Include="IDisplay.cs" />
     <Compile Include="IUsbCharger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
