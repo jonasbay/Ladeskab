@@ -9,27 +9,38 @@ namespace Ladeskab
 {
     class ChargeControl
     {
-        private IUsbCharger Current_;
-        private IDisplay Message_;        
+        private IUsbCharger UsbCharger_;
+        private IDisplay Message_;
+        public bool Connected { get; private set; }
+        void StartCharge()
+        {
+            UsbCharger_.StartCharge();
+            chargingMessages();
+        }
 
+        void StopCharge()
+        {
+            UsbCharger_.StopCharge();
+        }
         private void chargingMessages()
         {
-            if (Current_.CurrentValue == 0)
+            if (UsbCharger_.CurrentValue == 0)
             {
                 //Gør ingenting
             }
 
-            else if(Current_.CurrentValue > 0 && Current_.CurrentValue <= 5)
+            else if(UsbCharger_.CurrentValue > 0 && UsbCharger_.CurrentValue <= 5)
             {
                 Message_.showChargeMsg("Telefonen er nu fuldt opladet. Frakobel telefon.");
             }
-            else if(Current_.CurrentValue > 5 && Current_.CurrentValue <= 500)
+            else if(UsbCharger_.CurrentValue > 5 && UsbCharger_.CurrentValue <= 500)
             {
                 Message_.showChargeMsg("Ladning er i gang!");
             }
             else
             {
-                Message_.showChargeMsg("Fejl! Frakobel straks telefon!");
+                Message_.showChargeMsg("Fejl! Ladning af telefon er stoppet!");
+                StopCharge();
             } 
         }
     }

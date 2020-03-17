@@ -9,8 +9,11 @@ namespace Ladeskab
     public interface IChargeControl
     {
         bool isConnected();
+        void StartCharge();
+        void StopCharge();
+        void chargingMessages();
 
-        void sendMessageToDislay();
+        bool Connected { get; }
 
     }
 }
