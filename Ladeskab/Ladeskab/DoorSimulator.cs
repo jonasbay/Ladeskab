@@ -15,7 +15,7 @@ namespace Ladeskab
         public event EventHandler<doorOpenEvent> doorOpen;
         public event EventHandler<doorCloseEvent> doorClose;
 
-        protected virtual void OnDoorOpen(doorOpenEvent e)
+        public virtual void OnDoorOpen()
         {
             if (doorLocked)
             {
@@ -27,7 +27,7 @@ namespace Ladeskab
             }
         }
 
-        protected virtual void OnDoorClose(doorCloseEvent e)
+        public virtual void OnDoorClose()
         {
             if (IsTheDoorOpen)
             {
@@ -63,6 +63,16 @@ namespace Ladeskab
                 Console.WriteLine("Door is already open and cannot be locked.");
                 return false;
             }
+        }
+
+        public bool DoorStatus
+        {
+            get { return IsTheDoorOpen; }
+        }
+
+        public bool DoorLockStatus
+        {
+            get { return doorLocked; }
         }
     }
 }
