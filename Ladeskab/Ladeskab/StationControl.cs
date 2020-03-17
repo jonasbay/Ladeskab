@@ -20,9 +20,10 @@ namespace Ladeskab
 
         // Her mangler flere member variable
         private LadeskabState _state;
-        private IUsbCharger _charger;
+        private IChargeControl _charger;
         private IDoor _door;
         private IDisplay _display;
+        private ILogFile _logfile;
         private int _oldId;
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
@@ -44,10 +45,7 @@ namespace Ladeskab
                         _door.lockDoor();
                         _charger.StartCharge();
                         _oldId = id;
-                        using (var writer = File.AppendText(logFile))
-                        {
-                            writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", id);
-                        }
+                        _logfile.logDoorLocked(id);
 
                         Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
                         _display.showStationMsg("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
@@ -71,18 +69,15 @@ namespace Ladeskab
                     {
                         _charger.StopCharge();
                         _door.unlockDoor();
-                        using (var writer = File.AppendText(logFile))
-                        {
-                            writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", id);
-                        }
+                        _logfile.logDoorUnlocked(id);
 
-                        Console.WriteLine("Tag din telefon ud af skabet og luk døren");
+                        Console.WriteLine("SC: Tag din telefon ud af skabet og luk døren");
                         _display.showStationMsg("Tag din telefon ud af skabet og luk døren");
                         _state = LadeskabState.Available;
                     }
                     else
                     {
-                        Console.WriteLine("Forkert RFID tag");
+                        Console.WriteLine("SC: Forkert RFID tag");
                         _display.showStationMsg("Forkert RFID tag");
                     }
 
