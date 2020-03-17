@@ -4,8 +4,15 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace LadeskabUnitTest
 {
     [TestClass]
-    public class UnitTest1
+    public class StationControlUnitTest
     {
+        private StationControl _uut;
+        [SetUp]
+        public void Setup()
+        {
+            _uut = new StationControl();
+        }
+
         [TestMethod]
         public void TestMethod1()
         {
