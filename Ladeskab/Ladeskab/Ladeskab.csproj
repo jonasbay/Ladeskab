@@ -50,6 +50,7 @@
     <Compile Include="ILogFile.cs" />
     <Compile Include="IRFIDreader.cs" />
     <Compile Include="IUsbCharger.cs" />
+    <Compile Include="LogData.cs" />
     <Compile Include="LogFile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
