@@ -8,18 +8,33 @@ namespace Ladeskab
 {
     class LogFile
     {
-        List<LogFile> logfile;
-        /*public void logDoorLock(int id)
+        List<LogData> logfile;
+        string date_;
+        int id_;
+        string dataLock = "Locked";
+        string dataUnlock = "Unlocked";
+        public void logDoorLock(int id)
         {
-            logfile = new List<LogFile>
-            {
-                (id, "11-03-2020") 
-            };
-            List<LogFile>.Add
+            date_ = DateTime.Now.ToString("dd/MM/yyy");
+            id_ = id;
+            logfile = new List<LogData>();
+
+            logfile.Add(new LogData(id_, date_, dataLock));
         }
         public void logDoorUnlocked(int id)
         {
+            date_ = DateTime.Now.ToString("dd/MM/yyy");
+            id_ = id;
+            logfile = new List<LogData>();
 
-        }*/
+            logfile.Add(new LogData(id_, date_, dataUnlock));
+        }
+
+        public void printLogFile()
+        {
+            Console.WriteLine(logfile);
+        }
+        
+        
     }
 }
