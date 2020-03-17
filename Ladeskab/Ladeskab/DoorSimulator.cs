@@ -43,7 +43,7 @@ namespace Ladeskab
         {
             if (IsTheDoorOpen == true)
             {
-                Console.WriteLine("Door is already open and cannot be unlocked.");
+                Console.WriteLine("Door is already open and cannot be unlocked!");
                 return false;
             }
             else
