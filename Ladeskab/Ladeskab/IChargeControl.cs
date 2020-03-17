@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Ladeskab
 {
-    public interface ILogFile
+    public interface IChargeControl
     {
-        void logDoorLocked(int id);
-        void logDoorUnlocked(int id);
+        bool isConnected();
+
+        void sendMessageToDislay();
+
     }
 }
