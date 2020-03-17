@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,8 @@ namespace Ladeskab
 {
     public class DoorSimulator : IDoor
     {
-        private bool IsTheDoorOpen;
-        private bool doorLocked;
+        private bool IsTheDoorOpen = false;
+        private bool doorLocked = true;
 
         public event EventHandler<doorOpenEvent> doorOpen;
         public event EventHandler<doorCloseEvent> doorClose;
@@ -68,11 +69,13 @@ namespace Ladeskab
         public bool DoorStatus
         {
             get { return IsTheDoorOpen; }
+            set { IsTheDoorOpen = value; }
         }
 
         public bool DoorLockStatus
         {
             get { return doorLocked; }
+            set { doorLocked = value; }
         }
     }
 }
