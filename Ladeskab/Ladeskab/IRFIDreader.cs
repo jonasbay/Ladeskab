@@ -6,13 +6,8 @@ using System.Threading.Tasks;
 
 namespace Ladeskab
 {
-    public class RFIDreaderEvent : EventArgs
-    {
-        public bool ID { get; set; }
-    }
-
     interface IRFIDreader
     {
-        event EventHandler<RFIDreaderEvent> RFIDEvent;
+        event EventHandler<int> RFIDEvent;
     }
 }

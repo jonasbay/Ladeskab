@@ -12,6 +12,7 @@ namespace Ladeskab
         private IUsbCharger UsbCharger_;
         private IDisplay Message_;
         public bool Connected { get; private set; }
+
         void StartCharge()
         {
             UsbCharger_.StartCharge();
