@@ -53,6 +53,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TestDisplay.cs" />
     <Compile Include="TestUsbChargerSimulator.cs" />
     <Compile Include="TestDoorSimulator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
