@@ -8,14 +8,14 @@ namespace Ladeskab
 {
     public class Display : IDisplay
     {
-
+        private IConsoleWriteLine Console_;
         public void showChargeMsg(string chargeMessage)
         {
-            Console.WriteLine(chargeMessage);
+            Console_.writeLine(chargeMessage);
         }
         public void showStationMsg(string stationMessage)
         {
-            Console.WriteLine(stationMessage);
+            Console_.writeLine(stationMessage);
         }
     }
 }
