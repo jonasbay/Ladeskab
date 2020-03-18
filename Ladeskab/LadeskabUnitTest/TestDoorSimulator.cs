@@ -20,9 +20,7 @@ namespace Ladeskab
         [Test]
         public void doorOpenEvent()
         {
-            _doorSimulator.doorOpen +=
-            _doorSimulator.OnDoorOpen();
-            Assert.That(_doorSimulator.)
+
         }
     }
 }

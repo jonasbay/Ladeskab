@@ -8,7 +8,7 @@ using NUnit.Framework;
 
 namespace LadeskabUnitTest
 {
-    [TestClass]
+    [TestFixture]
     public class TestDisplay
     {
         private IConsoleWriteLine _consoleWriteLine;
