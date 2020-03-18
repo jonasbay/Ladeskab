@@ -10,66 +10,29 @@ namespace Ladeskab
 {
     public class DoorSimulator : IDoor
     {
-        private bool IsTheDoorOpen = false;
         private bool doorLocked = true;
 
-        public event EventHandler<doorOpenEvent> doorOpen;
-        public event EventHandler<doorCloseEvent> doorClose;
+        public event EventHandler doorOpen;
+        public event EventHandler doorClose;
 
         public virtual void OnDoorOpen()
         {
-            if (doorLocked)
-            {
-                Console.Write("Door cannot open! Its locked.");
-            }
-            else
-            {
-                IsTheDoorOpen = true;
-            }
+            doorOpen?.Invoke(this,null);
         }
 
         public virtual void OnDoorClose()
         {
-            if (IsTheDoorOpen)
-            {
-                IsTheDoorOpen = false;
-            }
-            else
-            {
-                Console.Write("Door is not open!");
-            }
+            doorClose?.Invoke(this, null);
         }
 
-        public bool unlockDoor()
+        public void unlockDoor()
         {
-            if (IsTheDoorOpen == true)
-            {
-                Console.WriteLine("Door is already open and cannot be unlocked!");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            doorLocked = false;
         }
 
-        public bool lockDoor()
+        public void lockDoor()
         {
-            if (IsTheDoorOpen == false)
-            {
-                return true;
-            }
-            else
-            {
-                Console.WriteLine("Door is already open and cannot be locked.");
-                return false;
-            }
-        }
-
-        public bool DoorStatus
-        {
-            get { return IsTheDoorOpen; }
-            set { IsTheDoorOpen = value; }
+            doorLocked = true;
         }
 
         public bool DoorLockStatus
