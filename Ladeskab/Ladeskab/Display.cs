@@ -9,6 +9,11 @@ namespace Ladeskab
     public class Display : IDisplay
     {
         private IConsoleWriteLine Console_;
+        public Display(IConsoleWriteLine console)
+        {
+            Console_ = console;
+        }
+        
         public void showChargeMsg(string chargeMessage)
         {
             Console_.writeLine(chargeMessage);
