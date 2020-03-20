@@ -46,7 +46,6 @@ namespace Ladeskab
                     default:
                         break;
                 }
-
             } while (!finish);
         }
     }
