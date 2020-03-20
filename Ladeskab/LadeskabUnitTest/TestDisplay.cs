@@ -24,15 +24,24 @@ namespace LadeskabUnitTest
   
         }
 
-
         //se https://nsubstitute.github.io/help/received-calls/ for mere hjælp!
         [Test]
-        public void DidWriteLineGetCall()
+        public void ChargeMessageDidWriteLineRecieveMessage()
         {
-            _consoleWriteLine.DidNotReceive().writeLine();
+            //Act:
+            _uut.showChargeMsg("This is charge message");
+            //Assert:
+            _consoleWriteLine.DidNotReceive().writeLine("");
         }
 
-
+        [Test]
+        public void StationMessageDidWriteLineRecieveMessage()
+        {
+            //Act:
+            _uut.showStationMsg("This is charge message");
+            //Assert:
+            _consoleWriteLine.DidNotReceive().writeLine("");
+        }
 
     }
 }
