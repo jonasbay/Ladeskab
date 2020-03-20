@@ -5,35 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace LadeskabUnitTest
+namespace Ladeskab
 {
     [TestFixture]
-    class TestRFIDReaderSimulator
+    public class TestRFIDReaderSimulator
     {
-        private TestRFIDReaderSimulator _uut;
-        private bool _doorStatus;
+        private RFIDreaderSimulator _uut;
+        private int e_;
 
         [SetUp]
         public void Setup()
         {
-            _uut = new TestRFIDReaderSimulator();
+            _uut = new RFIDreaderSimulator();
         }
 
         [Test]
-        public void TestDoorOpenEvent()
+        public void TestRFIDEvent_IDCorrect()
         {
-            _doorStatus = false;
-            _uut.RFIDEvent
-            _uut.RFIDEvent += (o, e) => _doorStatus = true;
-            _uut.OnDoorOpen();
-            Assert.That(_doorStatus);
+            _uut.RFIDEvent += (o, e) => e_ = e;
+            _uut.OnRfidRead(500000);
+            Assert.That(e_, Is.EqualTo(500000));
         }
     }
-}
-
-public event EventHandler<int> RFIDEvent;
-
-public virtual void OnRfidRead(int e)
-{
-RFIDEvent?.Invoke(this, e);
 }

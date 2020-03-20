@@ -12,6 +12,7 @@ namespace Ladeskab
         {
             // Assemble your system here from all the classes
             DoorSimulator door = new DoorSimulator();
+            RFIDreaderSimulator rfidReader = new RFIDreaderSimulator();
 
             bool finish = false;
             do
@@ -40,7 +41,7 @@ namespace Ladeskab
                         string idString = System.Console.ReadLine();
 
                         int id = Convert.ToInt32(idString);
-                        //rfidReader.OnRfidRead(id);
+                        rfidReader.OnRfidRead(id);
                         break;
 
                     default:

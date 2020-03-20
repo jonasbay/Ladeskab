@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ladeskab
 {
-    class RFIDreaderSimulator : IRFIDreader
+    public class RFIDreaderSimulator : IRFIDreader
     {
         public event EventHandler<int> RFIDEvent;
 
