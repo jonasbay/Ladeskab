@@ -8,10 +8,11 @@ namespace Ladeskab
 {
     class RFIDreaderSimulator : IRFIDreader
     {
-        public event EventHandler<RFIDreaderEvent> RFIDEvent;
+        public event EventHandler<int> RFIDEvent;
 
-        public virtual void OnRfidRead(RFIDreaderEvent e)
+        public virtual void OnRfidRead(int e)
         {
+            RFIDEvent?.Invoke(this, e);
         }
     }
 }

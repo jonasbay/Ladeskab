@@ -12,6 +12,7 @@ namespace Ladeskab
         private IUsbCharger UsbCharger_;
         private IDisplay Message_;
         public bool Connected { get; private set; }
+
         void StartCharge()
         {
             UsbCharger_.StartCharge();
@@ -26,12 +27,13 @@ namespace Ladeskab
         {
             if (UsbCharger_.CurrentValue == 0)
             {
-                //Gør ingenting
+                Message_.showChargeMsg("Ladeværdi er nul");
             }
 
             else if(UsbCharger_.CurrentValue > 0 && UsbCharger_.CurrentValue <= 5)
             {
                 Message_.showChargeMsg("Telefonen er nu fuldt opladet. Frakobel telefon.");
+                StopCharge();
             }
             else if(UsbCharger_.CurrentValue > 5 && UsbCharger_.CurrentValue <= 500)
             {

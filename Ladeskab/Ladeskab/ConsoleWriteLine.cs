@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Ladeskab
 {
-    public interface IDoor
+    class ConsoleWriteLine : IConsoleWriteLine
     {
-        void unlockDoor();
-        void lockDoor();
-        event EventHandler doorOpen;
-        event EventHandler doorClose;
+        public void writeLine(string message)
+        {
+            Console.WriteLine(message);
+        }
     }
 }

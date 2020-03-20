@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
@@ -17,13 +18,9 @@ namespace Ladeskab
         }
 
         [Test]
-        public void TestMethod1()
+        public void doorOpenEvent()
         {
-            _doorSimulator.DoorLockStatus = false;
-            
-            _doorSimulator.OnDoorOpen();
 
-            Assert.That(_doorSimulator.DoorStatus, Is.True);
         }
     }
 }

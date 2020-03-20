@@ -44,8 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChargeControl.cs" />
+    <Compile Include="ConsoleWriteLine.cs" />
     <Compile Include="DoorSimulator.cs" />
     <Compile Include="IChargeControl.cs" />
+    <Compile Include="IConsoleWriteLine.cs" />
     <Compile Include="IDoor.cs" />
     <Compile Include="Display.cs" />
     <Compile Include="IDisplay.cs" />
