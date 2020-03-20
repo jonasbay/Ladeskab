@@ -9,6 +9,7 @@ namespace LadeskabUnitTest
     [TestClass]
     public class StationControlUnitTest
     {
+
         private StationControl _uut;
         [SetUp]
         public void Setup()
