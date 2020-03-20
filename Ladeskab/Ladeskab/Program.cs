@@ -13,6 +13,11 @@ namespace Ladeskab
             // Assemble your system here from all the classes
             DoorSimulator door = new DoorSimulator();
             RFIDreaderSimulator rfidReader = new RFIDreaderSimulator();
+            ChargeControl CC = new ChargeControl();
+            Display display = new Display();
+            LogFile logfile = new LogFile();
+
+            StationControl SC = new StationControl(CC, door, display, logfile, rfidReader);
 
             bool finish = false;
             do
