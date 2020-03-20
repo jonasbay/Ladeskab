@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
@@ -7,22 +8,23 @@ using DoorSimulator = Ladeskab.DoorSimulator;
 
 namespace Ladeskab
 {
-    [TestClass]
+    [TestFixture]
     public class TestDoorSimulator
     {
-        private DoorSimulator _doorSimulator;
+        private DoorSimulator _uut;
+
         [SetUp]
         public void Setup()
         {
-            _doorSimulator = new DoorSimulator();
+            _uut = new DoorSimulator();
         }
 
         [Test]
         public void doorOpenEvent()
         {
-            _doorSimulator.doorOpen +=
-            _doorSimulator.OnDoorOpen();
-            Assert.That(_doorSimulator.)
+            var command
+
+            Assert.That(_uut.doorOpen.didStuff);
         }
     }
 }
