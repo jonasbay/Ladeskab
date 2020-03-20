@@ -7,41 +7,46 @@ using UsbSimulator;
 
 namespace Ladeskab
 {
-    class ChargeControl
+    public class ChargeControl : IChargeControl
     {
         private IUsbCharger UsbCharger_;
-        private IDisplay Message_;
+        private IDisplay Display_;
         public bool Connected { get; private set; }
 
-        void StartCharge()
+        public ChargeControl(IUsbCharger usbCharger, IDisplay display)
+        {
+            UsbCharger_ = usbCharger;
+            Display_ = display;
+        }
+        public void StartCharge()
         {
             UsbCharger_.StartCharge();
             chargingMessages();
         }
 
-        void StopCharge()
+        public void StopCharge()
         {
             UsbCharger_.StopCharge();
         }
-        private void chargingMessages()
+        public void chargingMessages()
         {
             if (UsbCharger_.CurrentValue == 0)
             {
-                Message_.showChargeMsg("Ladeværdi er nul");
+                Display_.showChargeMsg("Ladeværdi er nul");
             }
 
             else if(UsbCharger_.CurrentValue > 0 && UsbCharger_.CurrentValue <= 5)
             {
-                Message_.showChargeMsg("Telefonen er nu fuldt opladet. Frakobel telefon.");
+                Display_.showChargeMsg("Telefonen er nu fuldt opladet. Frakobel telefon.");
                 StopCharge();
             }
             else if(UsbCharger_.CurrentValue > 5 && UsbCharger_.CurrentValue <= 500)
             {
-                Message_.showChargeMsg("Ladning er i gang!");
+                Display_.showChargeMsg("Ladning er i gang!");
             }
             else
             {
-                Message_.showChargeMsg("Fejl! Ladning af telefon er stoppet!");
+                Display_.showChargeMsg("Fejl! Ladning af telefon er stoppet!");
                 StopCharge();
             } 
         }
