@@ -34,7 +34,5 @@ namespace Ladeskab
         {
             Console.WriteLine(logfile);
         }
-        
-        
     }
 }
