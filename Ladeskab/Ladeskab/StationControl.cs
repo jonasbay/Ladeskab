@@ -32,6 +32,7 @@ namespace Ladeskab
         public StationControl(IChargeControl chargeControl,
             IDoor door, IDisplay display, ILogFile logfile, IRFIDreader RFIDreader)
         {
+            _state = LadeskabState.Available;
             _charger = chargeControl;
             _door = door;
             door.doorClose += doorClosed;
@@ -51,7 +52,7 @@ namespace Ladeskab
             {
                 case LadeskabState.Available:
                     // Check for ladeforbindelse
-                    if (_charger.Connected)
+                    if (_charger.IsConnected())
                     {
                         _door.lockDoor();
                         _charger.StartCharge();

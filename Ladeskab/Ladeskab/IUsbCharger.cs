@@ -14,10 +14,10 @@ namespace UsbSimulator
         event EventHandler<CurrentEventArgs> CurrentValueEvent;
 
         // Direct access to the current current value
-        double CurrentValue { get; }
+        double CurrentValue { get; set;  }
 
         // Require connection status of the phone
-        bool Connected { get; }
+        bool Connected { get; set;  }
 
         // Start charging
         void StartCharge();

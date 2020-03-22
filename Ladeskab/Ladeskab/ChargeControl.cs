@@ -11,7 +11,13 @@ namespace Ladeskab
     {
         private IUsbCharger UsbCharger_;
         private IDisplay Display_;
-        public bool Connected { get; private set; }
+
+        public bool IsConnected()
+        {
+            return UsbCharger_.Connected;
+        }
+        
+        //{ get;  set; }
 
         public ChargeControl(IUsbCharger usbCharger, IDisplay display)
         {
