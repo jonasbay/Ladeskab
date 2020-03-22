@@ -19,7 +19,6 @@ namespace LadeskabUnitTest
             ChargeControl chargeControl = Substitute.For<ChargeControl>(usbSimulator);
             DoorSimulator door = Substitute.For<DoorSimulator>();
             Display display = Substitute.For<Display>();
-            logfile logfile 
             _uut = new StationControl(chargeControl, door, display, logfile, RFIDreader);
         }
 
