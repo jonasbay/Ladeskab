@@ -12,7 +12,7 @@ namespace Ladeskab
         void StopCharge();
         void chargingMessages();
 
-        bool Connected { get; }
+        bool IsConnected(); //{ get; set; }
 
     }
 }
