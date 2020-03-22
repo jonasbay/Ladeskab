@@ -18,7 +18,7 @@ namespace LadeskabUnitTest
         [SetUp]
         public void setup()
         {
-            _consoleWriteLine = Substitute.For<IConsoleWriteLine>();
+            _consoleWriteLine = Substitute.For<ConsoleWriteLine>();
             _uut = new Display(_consoleWriteLine);
   
         }
