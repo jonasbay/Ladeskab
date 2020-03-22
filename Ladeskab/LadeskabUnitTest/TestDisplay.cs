@@ -30,7 +30,7 @@ namespace LadeskabUnitTest
             //Act:
             _uut.showChargeMsg("This is charge message");
             //Assert:
-            _consoleWriteLine.DidNotReceive().writeLine("");
+            _consoleWriteLine.Received().writeLine("This is charge message");
         }
 
         [Test]
@@ -39,7 +39,7 @@ namespace LadeskabUnitTest
             //Act:
             _uut.showStationMsg("This is charge message");
             //Assert:
-            _consoleWriteLine.DidNotReceive().writeLine("");
+            _consoleWriteLine.Received().writeLine("This is charge message");
         }
 
     }

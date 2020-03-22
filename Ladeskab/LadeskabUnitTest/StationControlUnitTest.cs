@@ -11,7 +11,7 @@ using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace LadeskabUnitTest
 {
-    [TestClass]
+    [TestFixture]
     public class StationControlUnitTest
     {
 
@@ -23,6 +23,7 @@ namespace LadeskabUnitTest
         private Display display;
         private LogFile logfile;
         private RFIDreaderSimulator RFIDreader;
+        private int e_;
 
         [SetUp]
         public void Setup()
@@ -37,13 +38,12 @@ namespace LadeskabUnitTest
             _uut = new StationControl(chargeControl, door, display, logfile, RFIDreader);
         }
 
-        [TestMethod]
+        [Test]
         public void RfidDetected_LadeskabAvailable_ChargerConnected_DoorUnlocked()
         {
             usbSimulator.SimulateConnected(true);
-            RFIDreader.OnRfidRead(1234);
 
-            Assert.That(door.DoorLockStatus);
+            door.Received().unlockDoor();
         }
     }
 }
