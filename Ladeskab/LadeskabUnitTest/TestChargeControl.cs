@@ -18,6 +18,7 @@ namespace LadeskabUnitTest
 
         private IUsbCharger usbCharger_;
         private IDisplay display_;
+        private int currentvalue;
 
         [SetUp]
         public void setup()
@@ -51,6 +52,8 @@ namespace LadeskabUnitTest
         public void DidReceiveMessage()
         {
             //Act
+            usbCharger_.CurrentValueEvent += (o, e) => currentvalue = 0;
+            
             uut_.chargingMessages();
             display_.DidNotReceive().showChargeMsg("");
         }
