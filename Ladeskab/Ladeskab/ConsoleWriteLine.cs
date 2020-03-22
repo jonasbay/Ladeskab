@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ladeskab
 {
-    class ConsoleWriteLine : IConsoleWriteLine
+    public class ConsoleWriteLine : IConsoleWriteLine
     {
         public void writeLine(string message)
         {

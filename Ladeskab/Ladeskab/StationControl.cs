@@ -32,6 +32,7 @@ namespace Ladeskab
         public StationControl(IChargeControl chargeControl,
             IDoor door, IDisplay display, ILogFile logfile, IRFIDreader RFIDreader)
         {
+            _state = LadeskabState.Available;
             _charger = chargeControl;
             _door = door;
             door.doorClose += doorClosed;
