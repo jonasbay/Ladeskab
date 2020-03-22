@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ladeskab
 {
-    class LogData
+    public class LogData
     {
         string date;
         int id;
@@ -20,8 +20,16 @@ namespace Ladeskab
             state = lstate;
         }
 
-        public string Date { get; set; }
+        public string Date
+        {
+            get { return date; }
+            set { date = value; }
+        }
 
-        public int Id { get; set; }
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
     }
 }
