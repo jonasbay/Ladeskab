@@ -14,7 +14,8 @@ namespace LadeskabUnitTest
         [SetUp]
         public void Setup()
         {
-            _uut = new StationControl();
+            ChargeControl chargeControl = new Substitute(ChargeControl)
+            _uut = new StationControl(chargeControl, door, display, logfile, RFIDreader);
         }
 
         [TestMethod]

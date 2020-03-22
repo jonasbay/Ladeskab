@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UsbSimulator;
 
 namespace Ladeskab
 {
@@ -13,8 +14,9 @@ namespace Ladeskab
             // Assemble your system here from all the classes
             DoorSimulator door = new DoorSimulator();
             RFIDreaderSimulator rfidReader = new RFIDreaderSimulator();
-            ChargeControl CC = new ChargeControl();
-            Display display = new Display();
+            Display display = new Display(new ConsoleWriteLine());
+            UsbChargerSimulator USBCharger = new UsbChargerSimulator();
+            ChargeControl CC = new ChargeControl(USBCharger, display);
             LogFile logfile = new LogFile();
 
             StationControl SC = new StationControl(CC, door, display, logfile, rfidReader);
