@@ -43,8 +43,6 @@ namespace Ladeskab
             RFIDreader.RFIDEvent += RfidDetected;
         }
 
-        
-
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
         private void RfidDetected(object obj, int id)
         {

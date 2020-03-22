@@ -38,12 +38,12 @@ namespace LadeskabUnitTest
             _uut = new StationControl(chargeControl, door, display, logfile, RFIDreader);
         }
 
-        [Test]
-        public void RfidDetected_LadeskabAvailable_ChargerConnected_DoorUnlocked()
-        {
-            usbSimulator.SimulateConnected(true);
+        //[Test]
+        //public void RfidDetected_LadeskabAvailable_ChargerConnected_DoorUnlocked()
+        //{
 
-            door.Received().unlockDoor();
-        }
+        //    //door.Received().unlockDoor();
+        //}
+
     }
 }
