@@ -48,11 +48,13 @@ namespace LadeskabUnitTest
             usbCharger_.Received(1).StopCharge();
         }
 
-        [Test]
-        public void DidReceiveMessage()
+        [TestCase(0)]
+        [TestCase(6)]
+        [TestCase(499)]
+        public void DidReceiveMessage(int c)
         {
             //Act
-            usbCharger_.CurrentValueEvent += (o, e) => currentvalue = 0;
+            usbCharger_.CurrentValueEvent += (o, e) => currentvalue = c;
             
             uut_.chargingMessages();
             display_.DidNotReceive().showChargeMsg("");
