@@ -10,7 +10,7 @@ namespace Ladeskab
     {
         public event EventHandler<int> RFIDEvent;
 
-        public virtual void OnRfidRead(int e)
+        public void OnRfidRead(int e)
         {
             RFIDEvent?.Invoke(this, e);
         }

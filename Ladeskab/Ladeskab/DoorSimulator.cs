@@ -15,12 +15,12 @@ namespace Ladeskab
         public event EventHandler doorOpen;
         public event EventHandler doorClose;
 
-        public virtual void OnDoorOpen()
+        public void OnDoorOpen()
         {
             doorOpen?.Invoke(this,null);
         }
 
-        public virtual void OnDoorClose()
+        public void OnDoorClose()
         {
             doorClose?.Invoke(this, null);
         }
