@@ -51,6 +51,7 @@ namespace LadeskabUnitTest
             usbCharger_.Received(1).StopCharge();
         }
 
+        //Test at showChargeMsg klades fra chargingMessages
         [Test]
         public void DidMsgReceiveCall0()
         {
@@ -94,6 +95,48 @@ namespace LadeskabUnitTest
 
             uut_.chargingMessages();
             display_.Received(1).showChargeMsg("Fejl! Ladning af telefon er stoppet!");
+        }
+
+        //Test at StopCharge kaldes i ChargingMessages
+        [TestCase(1)]
+        [TestCase(5)]
+        public void DidStopChargeReceiveCallCurrentBetween1And5(double c)
+        {
+            //Act
+            usbCharger_.CurrentValueEvent += (o, e) => currentvalue = c;
+            usbCharger_.CurrentValue = c;
+
+            uut_.chargingMessages();
+            usbCharger_.Received(1).StopCharge();
+        }
+        [Test]
+        public void DidStopChargeReceiveCallCurrentCallOver500()
+        {
+            //Act
+            usbCharger_.CurrentValueEvent += (o, e) => currentvalue = 600;
+            usbCharger_.CurrentValue = 600;
+
+            uut_.chargingMessages();
+            usbCharger_.Received(1).StopCharge();    
+        }
+
+        //Connected
+        [Test]
+        public void DidConnectReturnTrue()
+        {
+            //Act
+            usbCharger_.Connected = true;
+            //Assert
+            uut_.IsConnected().Equals(true);
+        }
+        [Test]
+        public void DidConnectReturnFalse()
+        {
+            //Act
+            usbCharger_.Connected = false;
+            //Assert
+            uut_.IsConnected().Equals(false);
+
         }
     }
 }
