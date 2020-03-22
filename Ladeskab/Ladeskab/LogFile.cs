@@ -13,6 +13,7 @@ namespace Ladeskab
         int id_;
         string dataLock = "Locked";
         string dataUnlock = "Unlocked";
+        public LogFile() { }
         public void logDoorLocked(int id)
         {
             date_ = DateTime.Now.ToString("dd/MM/yyy");
