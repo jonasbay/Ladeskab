@@ -5,7 +5,7 @@
 	<TargetArguments>
 		bin\Debug\LadeskabUnitTest.dll --result:TestResult.xml
 	</TargetArguments>
-	<TargetWorkingDir>LadeskabUnitTest</TargetWorkingDir>
+	<TargetWorkingDir>Ladeskab/LadeskabUnitTest</TargetWorkingDir>
 	<TempDir>
 		<!--
 			Directory for the auxiliary files. Set to system temp by default. 
