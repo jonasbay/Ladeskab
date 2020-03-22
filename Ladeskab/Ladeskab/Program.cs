@@ -5,6 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UsbSimulator;
 
+// ******************** //
+// *** Jonas er gay *** //
+// ******************** //
+
 namespace Ladeskab
 {
     class Program

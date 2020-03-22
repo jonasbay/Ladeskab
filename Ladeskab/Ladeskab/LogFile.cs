@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ladeskab
 {
-    class LogFile : ILogFile
+    public class LogFile : ILogFile
     {
         List<LogData> logfile;
         string date_;
