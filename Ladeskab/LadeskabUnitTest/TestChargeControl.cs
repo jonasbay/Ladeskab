@@ -64,10 +64,10 @@ namespace LadeskabUnitTest
         public void DidStopChargeReceiveCall()
         {
             //Act
-            usbCharger_.CurrentValueEvent += (o, e) => currentvalue = 6;
+            usbCharger_.CurrentValueEvent += (o, e) => currentvalue = 600;
 
             uut_.chargingMessages();
-            display_.DidNotReceive().showChargeMsg("");
+            display_.Received(1).showChargeMsg("Fejl! Ladning af telefon er stoppet!");
         }
     }
 }
