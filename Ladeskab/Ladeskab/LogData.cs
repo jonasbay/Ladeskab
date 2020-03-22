@@ -11,7 +11,6 @@ namespace Ladeskab
         string date;
         int id;
         string state;
-        public LogData() { }
 
         public LogData(int lId, string lDate, string lstate)
         {
