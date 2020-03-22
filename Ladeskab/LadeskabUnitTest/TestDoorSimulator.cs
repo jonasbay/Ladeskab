@@ -39,16 +39,30 @@ namespace Ladeskab
         }
 
         [Test]
-        public void testDoorIsLocked()
+        public void testDoorIsLocked_withDoorLockStatusFunction()
         {
             _uut.DoorLockStatus = true;
             Assert.That(_uut.DoorLockStatus, Is.True);
         }
 
         [Test]
-        public void testDoorIsUnlocked()
+        public void testDoorIsUnlocked_withDoorLockStatusFunction()
         {
             _uut.DoorLockStatus = false;
+            Assert.That(_uut.DoorLockStatus, Is.False);
+        }
+
+        [Test]
+        public void testLockDoorFunction()
+        {
+            _uut.lockDoor();
+            Assert.That(_uut.DoorLockStatus, Is.True);
+        }
+
+        [Test]
+        public void testUnlockDoorFunction()
+        {
+            _uut.unlockDoor();
             Assert.That(_uut.DoorLockStatus, Is.False);
         }
     }
