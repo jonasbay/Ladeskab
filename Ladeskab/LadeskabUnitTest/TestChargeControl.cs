@@ -52,7 +52,7 @@ namespace LadeskabUnitTest
         {
             //Act
             uut_.chargingMessages();
-            usbCharger_.Received(1).StartCharge()
+            display_.DidNotReceive().showChargeMsg("");
         }
     }
 }
