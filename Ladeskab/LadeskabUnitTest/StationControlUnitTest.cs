@@ -16,34 +16,57 @@ namespace LadeskabUnitTest
     {
 
         private StationControl _uut;
-        private UsbChargerSimulator usbSimulator;
-        private ChargeControl chargeControl;
-        private DoorSimulator door;
-        private ConsoleWriteLine console;
-        private Display display;
-        private LogFile logfile;
-        private RFIDreaderSimulator RFIDreader;
+        private UsbChargerSimulator _usbSimulator;
+        private IChargeControl _chargeControl;
+        private IDoor _door;
+        private ConsoleWriteLine _console;
+        private Display _display;
+        private LogFile _logfile;
+        private IRFIDreader _rfid;
         private int e_;
 
         [SetUp]
         public void Setup()
         {
-            usbSimulator = Substitute.For<UsbChargerSimulator>();
-            chargeControl = Substitute.For<ChargeControl>(usbSimulator);
-            door = Substitute.For<DoorSimulator>();
-            console = Substitute.For<ConsoleWriteLine>();
-            display = Substitute.For<Display>(console);
-            logfile = Substitute.For<LogFile>();
-            RFIDreader = Substitute.For<RFIDreaderSimulator>();
-            _uut = new StationControl(chargeControl, door, display, logfile, RFIDreader);
+            _usbSimulator = Substitute.For<UsbChargerSimulator>();
+            _chargeControl = Substitute.For<IChargeControl>();
+            _door = Substitute.For<IDoor>();
+            _console = Substitute.For<ConsoleWriteLine>();
+            _display = Substitute.For<Display>(_console);
+            _logfile = Substitute.For<LogFile>();
+            _rfid = Substitute.For<IRFIDreader>();
+            _uut = new StationControl(_chargeControl, _door, _display, _logfile, _rfid);
         }
 
         [Test]
-        public void RfidDetected_LadeskabAvailable_ChargerConnected_DoorUnlocked()
+        public void TestRfidDetected_lockDoor_Called()
         {
-            usbSimulator.SimulateConnected(true);
+            _chargeControl.IsConnected().Returns(true);
 
-            door.Received().unlockDoor();
+            _rfid.OnRfidRead(1234);
+
+            _door.Received().lockDoor();
         }
+
+        [Test]
+        public void TestRfidDetected_StartCharge_Called()
+        {
+            _chargeControl.IsConnected().Returns(true);
+
+            _rfid.OnRfidRead(1234);
+
+            _chargeControl.Received().StartCharge();
+        }
+
+        [Test]
+        public void TestRfidDetected_logDoorLocked_Called()
+        {
+            _chargeControl.IsConnected().Returns(true);
+
+            _rfid.OnRfidRead(1234);
+
+            _logfile.Received().logDoorLocked(1234);
+        }
+
     }
 }

@@ -24,13 +24,13 @@ namespace Ladeskab
         private IDoor _door;
         private IDisplay _display;
         private ILogFile _logfile;
-        private IRFIDreader _RFIDreader;
+        private IRFIDreader _rfid;
         private int _oldId;
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
 
         public StationControl(IChargeControl chargeControl,
-            IDoor door, IDisplay display, ILogFile logfile, IRFIDreader RFIDreader)
+            IDoor door, IDisplay display, ILogFile logfile, IRFIDreader rfid)
         {
             _state = LadeskabState.Available;
             _charger = chargeControl;
@@ -39,14 +39,14 @@ namespace Ladeskab
             door.doorOpen += doorOpened;
             _display = display;
             _logfile = logfile;
-            _RFIDreader = RFIDreader;
-            RFIDreader.RFIDEvent += RfidDetected;
+            _rfid = rfid;
+            _rfid.RFIDEvent += RfidDetected;
         }
 
         
 
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
-        private void RfidDetected(object obj, int id)
+        public void RfidDetected(object obj, int id)
         {
             switch (_state)
             {
