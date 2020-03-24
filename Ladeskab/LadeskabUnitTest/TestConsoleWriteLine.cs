@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using Ladeskab;
 using NSubstitute;
+using System.IO;
+
 
 namespace LadeskabUnitTest
 {
@@ -24,9 +26,14 @@ namespace LadeskabUnitTest
         [Test]
         public void writeLineReceivedString()
         {
+            StringWriter stringWriter = new StringWriter();
+            
+            StringReader reader = new StringReader("writeLine message");
+            
             uut_.writeLine("writeLine message");
-            string input = Console.ReadLine();
-            Assert.AreEqual(input, "writeLine message");
+           
+            //string input = Console.ReadLine();
+            Assert.AreEqual(reader.Read(), "writeLine message");
         }
         
     }

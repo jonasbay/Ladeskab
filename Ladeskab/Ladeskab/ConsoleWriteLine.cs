@@ -9,9 +9,14 @@ namespace Ladeskab
 {
     public class ConsoleWriteLine : IConsoleWriteLine
     {
+        StringWriter stringWriter;
+        StringReader reader;
         public void writeLine(string message)
         {
-            Console.WriteLine(message);
+            //Console.WriteLine(message);
+            reader = new StringReader(message);
+            stringWriter = new StringWriter();
+            stringWriter.Write(reader);
         }
     }
 }
