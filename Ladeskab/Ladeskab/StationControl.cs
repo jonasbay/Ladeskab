@@ -19,32 +19,33 @@ namespace Ladeskab
         };
 
         // Her mangler flere member variable
-        private LadeskabState _state;
+        private LadeskabState _state = LadeskabState.Available;
         private IChargeControl _charger;
         private IDoor _door;
         private IDisplay _display;
         private ILogFile _logfile;
-        private IRFIDreader _RFIDreader;
+        private IRFIDreader _rfid;
         private int _oldId;
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
 
         public StationControl(IChargeControl chargeControl,
-            IDoor door, IDisplay display, ILogFile logfile, IRFIDreader RFIDreader)
+            IDoor door, IDisplay display, ILogFile logfile, IRFIDreader rfid)
         {
-            _state = LadeskabState.Available;
             _charger = chargeControl;
             _door = door;
             door.doorClose += doorClosed;
             door.doorOpen += doorOpened;
             _display = display;
             _logfile = logfile;
-            _RFIDreader = RFIDreader;
-            RFIDreader.RFIDEvent += RfidDetected;
+            _rfid = rfid;
+            _rfid.RFIDEvent += RfidDetected;
         }
 
+        
+
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
-        private void RfidDetected(object obj, int id)
+        public void RfidDetected(object obj, int id)
         {
             switch (_state)
             {
@@ -71,6 +72,7 @@ namespace Ladeskab
 
                 case LadeskabState.DoorOpen:
                     // Ignore
+                    Console.WriteLine("State - doorOpen");
                     break;
 
                 case LadeskabState.Locked:
@@ -92,17 +94,20 @@ namespace Ladeskab
                     }
 
                     break;
+                //
             }
         }
 
         private void doorOpened(object obj, EventArgs e)
         {
+            _state = LadeskabState.DoorOpen;
             _display.showStationMsg("Tilslut telefon");
             Console.WriteLine("Door opened, from console");
         }
 
         private void doorClosed(object obj, EventArgs e)
         {
+            _state = LadeskabState.Available;
             _display.showStationMsg("Indlæs RFID");
             Console.WriteLine("Door closed, from console");
         }
