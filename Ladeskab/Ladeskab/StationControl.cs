@@ -99,6 +99,7 @@ namespace Ladeskab
 
         private void doorOpened(object obj, EventArgs e)
         {
+            _state = LadeskabState.DoorOpen;
             _display.showStationMsg("Tilslut telefon");
             Console.WriteLine("Door opened, from console");
         }
