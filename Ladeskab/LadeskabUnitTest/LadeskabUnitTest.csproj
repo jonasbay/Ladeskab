@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="LogDataUnitTest.cs" />
     <Compile Include="TestChargeControl.cs" />
+    <Compile Include="TestConsoleWriteLine.cs" />
     <Compile Include="TestDisplay.cs" />
     <Compile Include="TestLogFile.cs" />
     <Compile Include="TestRFIDReaderSimulator.cs" />

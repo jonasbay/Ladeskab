@@ -6,32 +6,52 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using Ladeskab;
 using NSubstitute;
-using UsbSimulator;
 
 namespace LadeskabUnitTest
 {
     [TestFixture]
     public class TestLogFile
     {
-        private ILogFile uut_;
+        private LogFile uut_;
+        private LogData logdata_;
+        private string id_;
+        private string date_;
+        private string state_;
 
-        private IUsbCharger usbCharger_;
-        private StationControl stationControl_;
 
         [SetUp]
         public void setup()
         {
-            stationControl_ = Substitute.For<StationControl>();
-            usbCharger_ = Substitute.For<UsbChargerSimulator>();
             uut_ = new LogFile();
         }
-        /*
+
         [Test]
-        public void logDoorUnlockedReceivedCall()
+        public void logDoorUnlockedReceivedCorrectInfo()
         {
-            usbCharger_.Connected = true;
-            //stationControl_.RFid
+            uut_.logDoorUnlocked(1234);
+
+            id_ = uut_.logfileList[0].Id.ToString();
+            date_ = uut_.logfileList[0].Date;
+            state_ = uut_.logfileList[0].State;
+
+            string alle = id_ + date_ + state_;
+
+            string TimeNow = DateTime.Now.ToString("dd/MM/yyyy");
+            Assert.That(alle, Is.EqualTo($"1234{TimeNow}Unlocked"));
         }
-        */
+        [Test]
+        public void logDoorLockedReceivedCorrectInfo()
+        {
+            uut_.logDoorLocked(1234);
+
+            id_ = uut_.logfileList[0].Id.ToString();
+            date_ = uut_.logfileList[0].Date;
+            state_ = uut_.logfileList[0].State;
+
+            string alle = id_ + date_ + state_;
+
+            string TimeNow = DateTime.Now.ToString("dd/MM/yyyy");
+            Assert.That(alle, Is.EqualTo($"1234{TimeNow}Locked"));
+        }
     }
 }

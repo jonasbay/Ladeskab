@@ -30,5 +30,10 @@ namespace Ladeskab
             get { return id; }
             set { id = value; }
         }
+
+        public string State
+        {
+            get { return state; }
+        }
     }
 }
