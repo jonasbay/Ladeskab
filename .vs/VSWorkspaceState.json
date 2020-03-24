@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Ladeskab",
+    "\\Ladeskab\\Ladeskab",
+    "\\Ladeskab\\LadeskabUnitTest"
   ],
+  "SelectedNode": "\\Ladeskab\\Ladeskab.sln",
   "PreviewInSolutionExplorer": false
 }
