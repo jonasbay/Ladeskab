@@ -12,11 +12,11 @@ namespace Ladeskab
         int id;
         string state;
 
-        public LogData(int lId, string lDate, string lstate)
+        public LogData(int lId, string lDate, string lState)
         {
             date = lDate;
             id = lId;
-            state = lstate;
+            state = lState;
         }
 
         public string Date
