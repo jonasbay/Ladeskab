@@ -16,24 +16,23 @@ namespace LadeskabUnitTest
     {
 
         private StationControl _uut;
-        private UsbChargerSimulator _usbSimulator;
+        private IUsbCharger _usbSimulator;
         private IChargeControl _chargeControl;
         private IDoor _door;
-        private ConsoleWriteLine _console;
-        private Display _display;
-        private LogFile _logfile;
+        private IConsoleWriteLine _console;
+        private IDisplay _display;
+        private ILogFile _logfile;
         private IRFIDreader _rfid;
         private int e_;
 
         [SetUp]
         public void Setup()
         {
-            _usbSimulator = Substitute.For<UsbChargerSimulator>();
+            _usbSimulator = Substitute.For<IUsbCharger>();
             _chargeControl = Substitute.For<IChargeControl>();
             _door = Substitute.For<IDoor>();
-            _console = Substitute.For<ConsoleWriteLine>();
-            _display = Substitute.For<Display>(_console);
-            _logfile = Substitute.For<LogFile>();
+            _display = Substitute.For<IDisplay>();
+            _logfile = Substitute.For<ILogFile>();
             _rfid = Substitute.For<IRFIDreader>();
             _uut = new StationControl(_chargeControl, _door, _display, _logfile, _rfid);
         }
@@ -43,7 +42,7 @@ namespace LadeskabUnitTest
         {
             _chargeControl.IsConnected().Returns(true);
 
-            _rfid.OnRfidRead(1234);
+            _rfid.RFIDEvent += Raise.Event<EventHandler<int>>(this, 123);
 
             _door.Received().lockDoor();
         }
@@ -53,7 +52,7 @@ namespace LadeskabUnitTest
         {
             _chargeControl.IsConnected().Returns(true);
 
-            _rfid.OnRfidRead(1234);
+            _rfid.RFIDEvent += Raise.Event<EventHandler<int>>(this, 123);
 
             _chargeControl.Received().StartCharge();
         }
@@ -63,10 +62,40 @@ namespace LadeskabUnitTest
         {
             _chargeControl.IsConnected().Returns(true);
 
-            _rfid.OnRfidRead(1234);
+            _rfid.RFIDEvent += Raise.Event<EventHandler<int>>(this, 123);
 
-            _logfile.Received().logDoorLocked(1234);
+            _logfile.Received().logDoorLocked(123);
         }
 
+        [Test]
+        public void TestRfidDetected_showStationMesage_Called()
+        {
+            _chargeControl.IsConnected().Returns(true);
+
+            _rfid.RFIDEvent += Raise.Event<EventHandler<int>>(this, 123);
+
+            _display.Received()
+                .showStationMsg("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
+        }
+
+        [Test]
+        public void TestRfidDetected_chargerNotConnected()
+        {
+            _chargeControl.IsConnected().Returns(false);
+
+            _rfid.RFIDEvent += Raise.Event<EventHandler<int>>(this, 123);
+
+            _display.showStationMsg("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
+        }
+
+        [Test]
+        public void TestRfidDetected_ladeskab_is_locked()
+        {
+            _chargeControl.IsConnected().Returns(false);
+
+            _rfid.RFIDEvent += Raise.Event<EventHandler<int>>(this, 123);
+
+           // Assert.That(_uut._state, Is.EqualTo(1));
+        }
     }
 }
