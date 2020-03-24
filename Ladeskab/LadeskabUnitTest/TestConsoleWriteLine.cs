@@ -27,14 +27,12 @@ namespace LadeskabUnitTest
         public void writeLineReceivedString()
         {
             StringWriter stringWriter = new StringWriter();
-            
-            StringReader reader = new StringReader("writeLine message");
-            
+            Console.SetOut(stringWriter);
+
             uut_.writeLine("writeLine message");
-           
-            //string input = Console.ReadLine();
-            Assert.AreEqual(reader.Read(), "writeLine message");
+
+            Assert.That(stringWriter.ToString(), Is.EqualTo("writeLine message\r\n"));
         }
-        
+
     }
 }
