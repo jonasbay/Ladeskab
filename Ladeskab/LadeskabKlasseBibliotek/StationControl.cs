@@ -80,7 +80,6 @@ namespace Ladeskab
                         _door.unlockDoor();
                         _logfile.logDoorUnlocked(id);
 
-                        Console.WriteLine("SC: Tag din telefon ud af skabet og luk døren");
                         _display.showStationMsg("Tag din telefon ud af skabet og luk døren");
                         _state = LadeskabState.Available;
                     }
@@ -99,14 +98,12 @@ namespace Ladeskab
         {
             _state = LadeskabState.DoorOpen;
             _display.showStationMsg("Tilslut telefon");
-            Console.WriteLine("Door opened, from console");
         }
 
         private void doorClosed(object obj, EventArgs e)
         {
             _state = LadeskabState.Available;
             _display.showStationMsg("Indlæs RFID");
-            Console.WriteLine("Door closed, from console");
         }
     }
 }

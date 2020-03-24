@@ -95,12 +95,13 @@ namespace LadeskabUnitTest
 
             _door.doorOpen += Raise.Event();
             _rfid.RFIDEvent += Raise.Event<EventHandler<int>>(this, 123);
+
         }
 
 
         // TEST FOR RFIDDETECTED - STATE LOCKED //
         [Test]
-        public void TestRfidDetected_StateLocked_IDIsOldID_StopCharged_Called()
+        public void TestRfidDetected_StateLocked_idIsOldId_StopCharge_Called()
         {
             // Getting into state locked and raise event twice with same id
             _chargeControl.IsConnected().Returns(true);
