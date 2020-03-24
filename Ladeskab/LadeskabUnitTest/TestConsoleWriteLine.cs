@@ -20,13 +20,14 @@ namespace LadeskabUnitTest
             uut_ = new ConsoleWriteLine();
         }
 
-        /*
+        
         [Test]
         public void writeLineReceivedString()
         {
             uut_.writeLine("writeLine message");
-            Assert.
+            string input = Console.ReadLine();
+            Assert.AreEqual(input, "writeLine message");
         }
-        */
+        
     }
 }
