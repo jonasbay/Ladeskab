@@ -68,5 +68,20 @@ namespace LadeskabUnitTest
             _logfile.Received().logDoorLocked(1234);
         }
 
+
+        // TEST FOR RFIDDETECTED - STATE LOCKED //
+        [Test]
+        public void TestRfidDetected_StateLocked_IDIsOldID_StopCharged_Called()
+        {
+            // Getting into state locked
+            _chargeControl.IsConnected().Returns(true);
+            _rfid.OnRfidRead(1234);
+
+            // Raise event in state locked - ID is OLD ID
+            _rfid.OnRfidRead(1234);
+
+            // Test if stopCharge is called
+            _chargeControl.Received().StopCharge();
+        }
     }
 }
