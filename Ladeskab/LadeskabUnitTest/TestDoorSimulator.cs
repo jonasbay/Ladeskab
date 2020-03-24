@@ -21,12 +21,22 @@ namespace Ladeskab
         }
 
         [Test]
-        public void TestDoorOpenEvent()
+        public void TestDoorOpenEvent_DoorIsUnlocked()
         {
             _doorStatus = false;
             _uut.doorOpen += (o, e) => _doorStatus = true;
             _uut.OnDoorOpen();
             Assert.That(_doorStatus);
+        }
+
+        [Test]
+        public void TestDoorOpenEvent_DoorIsLocked()
+        {
+            _uut.DoorIsLocked = true;
+            _doorStatus = false;
+            _uut.doorOpen += (o, e) => _doorStatus = true;
+            _uut.OnDoorOpen();
+            Assert.That(!_doorStatus);
         }
 
         [Test]
@@ -41,29 +51,29 @@ namespace Ladeskab
         [Test]
         public void testDoorIsLocked_withDoorLockStatusFunction()
         {
-            _uut.DoorLockStatus = true;
-            Assert.That(_uut.DoorLockStatus, Is.True);
+            _uut.DoorIsLocked = true;
+            Assert.That(_uut.DoorIsLocked, Is.True);
         }
 
         [Test]
         public void testDoorIsUnlocked_withDoorLockStatusFunction()
         {
-            _uut.DoorLockStatus = false;
-            Assert.That(_uut.DoorLockStatus, Is.False);
+            _uut.DoorIsLocked = false;
+            Assert.That(_uut.DoorIsLocked, Is.False);
         }
 
         [Test]
         public void testLockDoorFunction()
         {
             _uut.lockDoor();
-            Assert.That(_uut.DoorLockStatus, Is.True);
+            Assert.That(_uut.DoorIsLocked, Is.True);
         }
 
         [Test]
         public void testUnlockDoorFunction()
         {
             _uut.unlockDoor();
-            Assert.That(_uut.DoorLockStatus, Is.False);
+            Assert.That(_uut.DoorIsLocked, Is.False);
         }
     }
 }

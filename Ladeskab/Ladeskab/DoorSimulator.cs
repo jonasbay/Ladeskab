@@ -10,14 +10,21 @@ namespace Ladeskab
 {
     public class DoorSimulator : IDoor
     {
-        private bool doorLocked = true;
+        private bool doorLocked = false;
 
         public event EventHandler doorOpen;
         public event EventHandler doorClose;
 
         public void OnDoorOpen()
         {
-            doorOpen?.Invoke(this,null);
+            if (DoorIsLocked == false)
+            {
+                doorOpen?.Invoke(this, null);
+            }
+            else
+            {
+                Console.WriteLine("Door is locked");
+            }
         }
 
         public void OnDoorClose()
@@ -35,7 +42,7 @@ namespace Ladeskab
             doorLocked = true;
         }
 
-        public bool DoorLockStatus
+        public bool DoorIsLocked
         {
             get { return doorLocked; }
             set { doorLocked = value; }

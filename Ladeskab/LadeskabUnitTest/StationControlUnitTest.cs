@@ -96,5 +96,78 @@ namespace LadeskabUnitTest
             _door.doorOpen += Raise.Event();
             _rfid.RFIDEvent += Raise.Event<EventHandler<int>>(this, 123);
         }
+
+
+        // TEST FOR RFIDDETECTED - STATE LOCKED //
+        [Test]
+        public void TestRfidDetected_StateLocked_IDIsOldID_StopCharged_Called()
+        {
+            // Getting into state locked and raise event twice with same id
+            _chargeControl.IsConnected().Returns(true);
+            _rfid.RFIDEvent += Raise.Event<EventHandler<int>>(this, 123);
+            _rfid.RFIDEvent += Raise.Event<EventHandler<int>>(this, 123);
+
+            _chargeControl.Received().StopCharge();
+        }
+
+        [Test]
+        public void TestRfidDetected_StateLocked_IDIsOldID_UnlockDoor_Called()
+        {
+            // Getting into state locked and raise event twice with same id
+            _chargeControl.IsConnected().Returns(true);
+            _rfid.RFIDEvent += Raise.Event<EventHandler<int>>(this, 123);
+            _rfid.RFIDEvent += Raise.Event<EventHandler<int>>(this, 123);
+
+            _door.Received().unlockDoor();
+        }
+
+        [Test]
+        public void TestRfidDetected_StateLocked_IDIsOldID_logDoorUnlocked_Called()
+        {
+            // Getting into state locked and raise event twice with same id
+            _chargeControl.IsConnected().Returns(true);
+            _rfid.RFIDEvent += Raise.Event<EventHandler<int>>(this, 123);
+            _rfid.RFIDEvent += Raise.Event<EventHandler<int>>(this, 123);
+
+            _logfile.Received().logDoorUnlocked(123);
+        }
+
+        [Test]
+        public void TestRfidDetected_StateLocked_IDIsOldID_showStationMsg_Called()
+        {
+            // Getting into state locked and raise event twice with same id
+            _chargeControl.IsConnected().Returns(true);
+            _rfid.RFIDEvent += Raise.Event<EventHandler<int>>(this, 123);
+            _rfid.RFIDEvent += Raise.Event<EventHandler<int>>(this, 123);
+
+            _display.Received().showStationMsg("Tag din telefon ud af skabet og luk døren");
+        }
+
+        [Test]
+        public void TestRfidDetected_StateLocked_IDIsNotOldID_showStationMsg_Called()
+        {
+            // Getting into state locked and raise event twice with different id
+            _chargeControl.IsConnected().Returns(true);
+            _rfid.RFIDEvent += Raise.Event<EventHandler<int>>(this, 123);
+            _rfid.RFIDEvent += Raise.Event<EventHandler<int>>(this, 555);
+
+            _display.Received().showStationMsg("Forkert RFID tag");
+        }
+
+        // TEST FOR EVENT DOOROPENED //
+        [Test]
+        public void TestDoorOpened_RaiseDoorEvent_ShowMessage()
+        {
+            _door.doorOpen += Raise.Event<EventHandler>();
+            _display.Received().showStationMsg("Tilslut telefon");
+        }
+
+        // TEST FOR EVENT DOORCLOSED //
+        [Test]
+        public void TestDoorClosed_RaiseDoorEvent_ShowMessage()
+        {
+            _door.doorClose += Raise.Event<EventHandler>();
+            _display.Received().showStationMsg("Indlæs RFID");
+        }
     }
 }

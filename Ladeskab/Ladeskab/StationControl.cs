@@ -72,6 +72,7 @@ namespace Ladeskab
 
                 case LadeskabState.DoorOpen:
                     // Ignore
+                    Console.WriteLine("State - doorOpen");
                     break;
 
                 case LadeskabState.Locked:
@@ -99,6 +100,7 @@ namespace Ladeskab
 
         private void doorOpened(object obj, EventArgs e)
         {
+            _state = LadeskabState.DoorOpen;
             _display.showStationMsg("Tilslut telefon");
             Console.WriteLine("Door opened, from console");
         }
