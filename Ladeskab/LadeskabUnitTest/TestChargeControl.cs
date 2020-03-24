@@ -24,12 +24,9 @@ namespace LadeskabUnitTest
         [SetUp]
         public void setup()
         {
-            //usbCharger_ = new UsbChargerSimulator();
-            usbCharger_ = Substitute.For<UsbChargerSimulator>();
-            console_ = Substitute.For<ConsoleWriteLine>();
-            display_ = Substitute.For<Display>(console_);
-            //display_ = new Display(console_);
-                //Substitute.For<new Display (console_)>();
+            usbCharger_ = Substitute.For<IUsbCharger>();
+            console_ = Substitute.For<IConsoleWriteLine>();
+            display_ = Substitute.For<IDisplay>();
             uut_ = new ChargeControl(usbCharger_, display_);
         }
 

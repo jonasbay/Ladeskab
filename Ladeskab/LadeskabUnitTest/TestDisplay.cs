@@ -18,12 +18,11 @@ namespace LadeskabUnitTest
         [SetUp]
         public void setup()
         {
-            _consoleWriteLine = Substitute.For<ConsoleWriteLine>();
+            _consoleWriteLine = Substitute.For<IConsoleWriteLine>();
             _uut = new Display(_consoleWriteLine);
   
         }
 
-        //se https://nsubstitute.github.io/help/received-calls/ for mere hjælp!
         [Test]
         public void ChargeMessageDidWriteLineRecieveMessage()
         {
