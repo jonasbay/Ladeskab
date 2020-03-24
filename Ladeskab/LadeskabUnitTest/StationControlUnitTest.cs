@@ -89,10 +89,11 @@ namespace LadeskabUnitTest
         }
 
         [Test]
-        public void TestRfidDetected_ladeskab_is_locked()
+        public void TestRfidDetected_doorOpened()
         {
-            _chargeControl.IsConnected().Returns(false);
+            _chargeControl.IsConnected().Returns(true);
 
+            _door.doorOpen += Raise.Event();
             _rfid.RFIDEvent += Raise.Event<EventHandler<int>>(this, 123);
         }
     }

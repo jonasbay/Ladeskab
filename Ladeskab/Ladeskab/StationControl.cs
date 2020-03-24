@@ -105,6 +105,7 @@ namespace Ladeskab
 
         private void doorClosed(object obj, EventArgs e)
         {
+            _state = LadeskabState.Available;
             _display.showStationMsg("Indlæs RFID");
             Console.WriteLine("Door closed, from console");
         }
