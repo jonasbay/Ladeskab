@@ -72,6 +72,7 @@ namespace Ladeskab
 
                 case LadeskabState.DoorOpen:
                     // Ignore
+                    Console.WriteLine("State - doorOpen");
                     break;
 
                 case LadeskabState.Locked:
