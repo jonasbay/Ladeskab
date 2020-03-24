@@ -18,7 +18,6 @@ namespace Ladeskab
             DoorOpen
         };
 
-        // Her mangler flere member variable
         private LadeskabState _state = LadeskabState.Available;
         private IChargeControl _charger;
         private IDoor _door;
@@ -26,8 +25,6 @@ namespace Ladeskab
         private ILogFile _logfile;
         private IRFIDreader _rfid;
         private int _oldId;
-
-        private string logFile = "logfile.txt"; // Navnet på systemets log-fil
 
         public StationControl(IChargeControl chargeControl,
             IDoor door, IDisplay display, ILogFile logfile, IRFIDreader rfid)
@@ -94,7 +91,7 @@ namespace Ladeskab
                     }
 
                     break;
-                //
+
             }
         }
 

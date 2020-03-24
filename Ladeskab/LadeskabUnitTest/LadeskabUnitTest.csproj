@@ -90,9 +90,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Ladeskab\Ladeskab.csproj">
-      <Project>{5388d7a4-30b0-4e85-b0cb-968c1269969c}</Project>
-      <Name>Ladeskab</Name>
+    <ProjectReference Include="..\LadeskabKlasseBibliotek\LadeskabKlasseBibliotek.csproj">
+      <Project>{803e9ec0-5962-4a85-86b3-5902e5454e44}</Project>
+      <Name>LadeskabKlasseBibliotek</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
