@@ -94,8 +94,6 @@ namespace LadeskabUnitTest
             _chargeControl.IsConnected().Returns(false);
 
             _rfid.RFIDEvent += Raise.Event<EventHandler<int>>(this, 123);
-
-           // Assert.That(_uut._state, Is.EqualTo(1));
         }
     }
 }
