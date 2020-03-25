@@ -69,9 +69,9 @@ namespace Ladeskab
                 case LadeskabState.Locked:
                     // Check for correct ID
                     if (id == _oldId)
-                    {
-                        _charger.StopCharge();
+                    { 
                         _door.unlockDoor();
+                        _charger.StopCharge();
                         _logfile.logDoorUnlocked(id);
 
                         _display.showStationMsg("Tag din telefon ud af skabet og luk døren");
@@ -99,5 +99,6 @@ namespace Ladeskab
             _state = LadeskabState.Available;
             _display.showStationMsg("Indlæs RFID");
         }
+        //Testing push again... again
     }
 }
