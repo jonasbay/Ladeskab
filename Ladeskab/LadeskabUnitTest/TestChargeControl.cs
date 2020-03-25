@@ -87,8 +87,8 @@ namespace LadeskabUnitTest
         public void DidMsgReceiveCallOver500()
         {
             //Act
-            usbCharger_.CurrentValueEvent += (o, e) => currentvalue = 600;
-            usbCharger_.CurrentValue = 600;
+            usbCharger_.CurrentValueEvent += (o, e) => currentvalue = 501;
+            usbCharger_.CurrentValue = 501;
 
             uut_.chargingMessages();
             display_.Received(1).showChargeMsg("Fejl! Ladning af telefon er stoppet!");
