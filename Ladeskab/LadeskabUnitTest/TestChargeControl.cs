@@ -136,15 +136,6 @@ namespace LadeskabUnitTest
 
 
         }
-        [Test]
-        public void hej()
-        {
-            //Act
-            usbCharger_.CurrentValueEvent += (o, e) => currentvalue = e.Current;
-            usbCharger_.CurrentValue = 600;
 
-            uut_.chargingMessages();
-            usbCharger_.Received(1).StopCharge();
-        }
     }
 }
