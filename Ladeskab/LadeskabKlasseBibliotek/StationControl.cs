@@ -99,6 +99,6 @@ namespace Ladeskab
             _state = LadeskabState.Available;
             _display.showStationMsg("Indlæs RFID");
         }
-        //Testing push again
+        //Testing push again... again
     }
 }
