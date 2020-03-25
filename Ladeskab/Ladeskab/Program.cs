@@ -12,7 +12,6 @@ namespace Ladeskab
     {
         static void Main(string[] args)
         {
-            // Assemble your system here from all the classes
             DoorSimulator door = new DoorSimulator();
             RFIDreaderSimulator rfidReader = new RFIDreaderSimulator();
             Display display = new Display(new ConsoleWriteLine());
