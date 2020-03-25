@@ -135,5 +135,19 @@ namespace LadeskabUnitTest
             uut_.IsConnected().Equals(false);
 
         }
+
+        [Test]
+        public void hej()
+        {
+            currentvalue = 600;
+            usbCharger_.CurrentValueEvent += (o, e) => currentvalue = e.Current;
+            usbCharger_.CurrentValue = 600;
+
+            //uut_.StartCharge();
+
+            System.Threading.Thread.Sleep(1100);
+            Assert.That(currentvalue, Is.EqualTo(usbCharger_.CurrentValue));
+        }
+
     }
 }
