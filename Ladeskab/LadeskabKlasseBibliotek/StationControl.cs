@@ -10,7 +10,6 @@ namespace Ladeskab
 {
     public class StationControl
     {
-        // Enum med tilstande ("states") svarende til tilstandsdiagrammet for klassen
         private enum LadeskabState
         {
             Available,
@@ -39,9 +38,7 @@ namespace Ladeskab
             _rfid.RFIDEvent += RfidDetected;
         }
 
-        
-
-        // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
+        //Eventhandler
         public void RfidDetected(object obj, int id)
         {
             switch (_state)
@@ -54,14 +51,11 @@ namespace Ladeskab
                         _charger.StartCharge();
                         _oldId = id;
                         _logfile.logDoorLocked(id);
-
-                        Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
                         _display.showStationMsg("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
                         _state = LadeskabState.Locked;
                     }
                     else
                     {
-                        Console.WriteLine("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
                         _display.showStationMsg("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
                     }
 
@@ -85,21 +79,21 @@ namespace Ladeskab
                     }
                     else
                     {
-                        Console.WriteLine("SC: Forkert RFID tag");
                         _display.showStationMsg("Forkert RFID tag");
                     }
 
                     break;
-
             }
         }
 
+        //Eventhandler
         private void doorOpened(object obj, EventArgs e)
         {
             _state = LadeskabState.DoorOpen;
             _display.showStationMsg("Tilslut telefon");
         }
 
+        //Eventhandler
         private void doorClosed(object obj, EventArgs e)
         {
             _state = LadeskabState.Available;
